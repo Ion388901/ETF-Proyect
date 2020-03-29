@@ -29,12 +29,7 @@ class ContractController extends BaseController {
      * @return \Illuminate\Http\Response
      */
 
-    public function show($id){
-        $contract=Contract::findOrFail($id);
-        $data = [];
-        $data['contract'] = $contract;
-        return view('contracts.show', ['data' => $data]);
+    public function show(){
+        return view('contracts.show');
     }
-
-    // Poner una función de firma de contrato
 }

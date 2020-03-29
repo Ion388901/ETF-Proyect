@@ -18,14 +18,7 @@ class PortfolioController extends BaseController {
      */
 
     public function index(Request $req, $order = null){
-        $portfolios = [];
-        if($order){
-            $portfolios = Portfolio::orderBy('price', $order)->get();
-        }
-        else {
-            $portfolios = Portfolio::all();
-        }
-
+        $portfolios = Portfolio::all();
         $data = [];
         $data['portfolios'] = $portfolios;
         return view('portfolios.index', ['data' => $data]);
@@ -55,6 +48,12 @@ class PortfolioController extends BaseController {
         $data = [];
         $data['contract'] = $contract;
         return view('contracts.show', ['data' => $data]);
+    }
+
+    // Request $req, $id
+    // Poner una función de firma de contrato
+    public function contractsign(){
+        return view('portfolios.index')->with('Firma de contrato', 'Se ha firmado el contrato');;
     }
 
     // Función que muestra el carrito

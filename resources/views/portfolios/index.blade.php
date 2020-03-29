@@ -15,7 +15,10 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Índice de portafolios</h3>
                     <div class="pull-right box-tools">
-                        <!-- Preguntar al profesor que hacer aquí para que el botón del checkout solo se active cuando contract.status = TRUE -->
+                    <div class="pull-right">
+                        <a href="{{ route('homepage') }}" class="btn btn-primary">Regresar</a>
+                    </div>    
+                    <!-- Preguntar al profesor que hacer aquí para que el botón del checkout solo se active cuando contract.status = TRUE -->
                         <a 
                             class="btn btn-success btn-sm"
                             href="{{ route('cart') }}">
@@ -38,13 +41,16 @@
                             <tbody>
                             @foreach ($data['portfolios'] as $portfolio)
                             <tr>
-                                <td>{{ $product->id }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->description }}</td>
-                                <td>{{ $product->price }}</td>
+                                <td>{{ $portfolio->id }}</td>
+                                <td>{{ $portfolio->name }}</td>
+                                <td>{{ $portfolio->description }}</td>
+                                <td>{{ $portfolio->price }}</td>
                                 <td>
                                     <a href="{{ route('portfolios.show', $portfolio->id) }}" class="btn btn-info">Mostrar portafolio</a>
                                     <!-- Preguntar al profesor que hacer aquí para que el botón del checkout solo se active cuando contract.status = TRUE -->
+                                    <p class="btn-holder">
+                                        <a href="{{ route('portfolios.contractsign', $portfolio->id) }}" class="btn btn-warning btn-block text-center" role="button">Firmar el contrato correspondiente</a> 
+                                    </p>
                                     <p class="btn-holder">
                                         <a href="{{ route('add-to-cart', $portfolio->id) }}" class="btn btn-warning btn-block text-center" role="button">Seleccionar este portafolio</a> 
                                     </p>

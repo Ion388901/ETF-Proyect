@@ -13,31 +13,31 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nombre del contrato: {{ $data['contract']->name }}</h3>
+                    <h3 class="box-title">Nombre del contrato: Contrato de Metales</h3>
+                </div>
+                <div class="pull-right">
+                    <a href="{{ route('contracts.index') }}" class="btn btn-primary">Regresar</a>
                 </div>
                 <div class="box-body">
-                    @if (!$data['contract']->portfolios->isEmpty())
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Portafolio</th>
+                                    <th>Contenido</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($data['contract']->portfolios as $portfolio)
+
                             <tr>
-                                <td>{{ $portfolio->id }}</td>
-                                <td>{{ $portfolio->name }}</td>
-                                <td>{{ $portfolio->description }}</td>
+                                <td>1</td>
+                                <td>Contrato de metales</td>
+                                <td>Por medio de la presente me responsabilizo de todo esto y lo usare bien, acepto este contrato y lo firmo</td>
                             </tr>
-                            @endforeach
+                            
                             </tbody>
                         </table>
-                    @else
-                        <p>Este contrato no esta vinculado a un portafolio</p>
-                    @endif
+                   
                 </div>
             </div>
         </div>

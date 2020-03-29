@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('homepage');
+Route::get('/','HomepageController@index')->name('homepage');
 
 // Rutas de inicio y registro de sesion
 Route::get('/register', 'UserController@register')->name('user.register');
@@ -31,6 +29,7 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 Route::get('/portfolios/cart', 'PortfolioController@cart')->name('cart');
 Route::get('/portfolios/add-to-cart/{id}', 'PortfolioController@addToCart')->name('add-to-cart');
 Route::delete('/portfolios/remove-from-cart', 'PortfolioController@remove')->name('remove-from-cart');
+Route::get('portfolios/contractsign', 'PortfolioController@contractsign')->name('portfolios.contractsign');
 
 // Rutas de las funciones de compra de portafolios
 Route::get('orders/create', 'OrderController@create')->name('order.create');
@@ -47,7 +46,7 @@ Route::get('/portfolios/{order?}', 'PortfolioController@index')->name('portfolio
 // Rutas de las funciones de cliente para contratos
 // Probablemente añadir rutas para firma de contrato 
 Route::get('/contracts', 'ContractController@index')->name('contracts.index');    
-Route::get('/contracts/show/{id}', 'ContractController@show')->name('contracts.show');    
+Route::get('/contracts/show/', 'ContractController@show')->name('contracts.show');    
 Route::get('/contracts/{order?}', 'ContractController@index')->name('contracts.index');
 Auth::routes();
 

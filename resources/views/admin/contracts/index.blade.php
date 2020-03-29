@@ -39,7 +39,7 @@
                                 <td>
                                     <form action="{{ route('admin.contracts.destroy', $contract->id) }}" method="POST">
                                     <a
-                                        href="{{ route('admin.contracts.show', ['contract' => $contract]) }}"
+                                        href="{{ route('admin.contracts.show', ['id' => $contract->id]) }}"
                                         class="btn btn-sm btn-default">
                                         <i class="fa fa-eye"></i>
                                         Ver contrato

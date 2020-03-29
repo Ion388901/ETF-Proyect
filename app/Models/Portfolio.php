@@ -11,13 +11,12 @@ class Portfolio extends Model {
     protected $fillable = [
         'name',
         'description',
-        'price',
-        'contract_id'
+        'price'
     ];
 
     public function contract()
     {
-        return $this->hasOne('App\Models\Contract');
+        return $this->belongsTo('App\Models\Contract');
     }
 
     public function orders()

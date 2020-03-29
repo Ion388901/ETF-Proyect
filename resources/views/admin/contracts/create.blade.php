@@ -36,6 +36,12 @@
                             <input name="contract[description]" type="text" class="form-control">
                         </div>
                     </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="">Portafolio</label>
+                            <input name="contract[portfolio_id]" type="text" class="form-control">
+                        </div>
+                    </div>
                     <div class="box-footer">
                         <button type="submit" class="btn btn-info pull-right">Crear contrato</button>
                     </div>

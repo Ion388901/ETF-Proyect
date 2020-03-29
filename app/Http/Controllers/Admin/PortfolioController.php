@@ -17,14 +17,7 @@ class PortfolioController extends BaseController {
      */
 
     public function index(Request $req, $order = null){
-        $portfolios = [];
-        if($order){
-            $portfolios = Portfolio::orderBy('price', $order)->get();
-        }
-        else {
-            $portfolios = Portfolio::all();
-        }
-
+        $portfolios = Portfolio::all();
         $data = [];
         $data['portfolios'] = $portfolios;
         return view('admin.portfolios.index', ['data' => $data]);
@@ -37,9 +30,18 @@ class PortfolioController extends BaseController {
      */
 
     public function create(Request $req){
-        $data = [];
-        $data['contracts'] = Contract::all();
-        return view('admin.portfolios.create', ['data' => $data]);
+        $portfolio = new \App\Models\Portfolio;
+        $portfolio->name = "Metales";
+        $portfolio->description = "Metales y piedras preciosas";
+        $portfolio->price = 9000;
+        $portfolio->save();
+        $contract = new \App\Models\Contract;
+        $contract->name = "Contrato de Metales";
+        $contract->description = "Por medio de la presente blablabla acepto este contrato";
+        $contract->status = FALSE;
+        $contract->portfolios()->save($portfolio);
+        $contract->save();
+        return view('admin.portfolios.create', ['portfolio' => $portfolio]);
     }
 
     /**
@@ -49,11 +51,11 @@ class PortfolioController extends BaseController {
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $req){
-        $portfolioInput = $req->input('portfolio');
-        $portfolio = Portfolio::create($portfolioInput);
-        return redirect()->route('admin.portfolios.index');
-    }
+    //public function store(Request $req){
+      //  $portfolioInput = $req->input('portfolio');
+      //  $portfolio = Portfolio::create($portfolioInput);
+      //  return redirect()->route('admin.portfolios.index');
+    //}
 
     /**
      * Display the specified resource.

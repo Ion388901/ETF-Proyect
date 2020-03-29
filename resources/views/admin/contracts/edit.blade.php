@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label>Portafolio vinculado</label>
                             <select name="portfolio[portfolio_id]" class="form-control">
-                            @foreach ($data['products'] as $product)
+                            @foreach ($data['portfolios'] as $portfolio)
                                 <option value="{{ $portfolio->id }}">{{ $portfolio->name }}</option>
                             @endforeach
                             </select>

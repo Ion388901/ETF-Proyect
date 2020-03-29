@@ -19,6 +19,9 @@
                             Agregar nuevo portafolio
                         </a>
                     </div>
+                    <div class="pull-right">
+                        <a href="{{ route('admin.contracts.index') }}" class="btn btn-primary">Regresar</a>
+                    </div>
                 </div>
                 <div class="box-body">
                     @if (!$data['contract']->portfolios->isEmpty())
