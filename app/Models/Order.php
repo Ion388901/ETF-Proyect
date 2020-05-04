@@ -10,6 +10,7 @@ class Order extends Model {
 
     protected $fillable = [
         'user_id',
+        'portfolio_id',
         'total',
         'status'
     ];
@@ -19,7 +20,7 @@ class Order extends Model {
         return $this->hasOne('App\Models\User');
     }
 
-    public function portfolios()
+    public function portfolio()
     {
         return $this->hasOne('App\Models\Portfolio');
     }

@@ -1,47 +1,36 @@
 @extends('layouts.main')
 
 @section('content')
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <h1>
-        Contrato
-    </h1>
-</section>
-<!-- Main content -->
-<section class="content container-fluid">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Nombre del contrato: Contrato de Metales</h3>
-                </div>
-                <div class="pull-right">
-                    <a href="{{ route('contracts.index') }}" class="btn btn-primary">Regresar</a>
-                </div>
-                <div class="box-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Contenido</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr>
-                                <td>1</td>
-                                <td>Contrato de metales</td>
-                                <td>Por medio de la presente me responsabilizo de todo esto y lo usare bien, acepto este contrato y lo firmo</td>
-                            </tr>
-                            
-                            </tbody>
-                        </table>
-                   
-                </div>
-            </div>
+<style>
+    .uper{
+        margin-top: 40px;
+    }
+</style>
+<div class="card uper">
+    <div class="card-header">
+        Vista Detallada
+    </div>
+    <div class="pull-right">
+        <a href="{{ route('contracts.index') }}" class="btn btn-primary">Regresar</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <label>Id:</label>
+            {{$contract->id}}
+        </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <label>Nombre:</label>
+            {{$contract->name}}
         </div>
     </div>
-</section>
-<!-- /.content -->
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <label>Descripción:</label>
+            {{$contract->description}}
+        </div>
+    </div>
+</div>
 @endsection

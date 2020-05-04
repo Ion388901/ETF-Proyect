@@ -16,12 +16,12 @@ class Portfolio extends Model {
 
     public function contract()
     {
-        return $this->belongsTo('App\Models\Contract');
+        return $this->hasOne('App\Models\Contract');
     }
 
     public function orders()
     {
-        return $this->hasOne('App\Models\Order');
+        return $this->belongsTo('App\Models\Order');
     }
 
 }

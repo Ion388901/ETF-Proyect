@@ -30,18 +30,9 @@ class PortfolioController extends BaseController {
      */
 
     public function create(Request $req){
-        $portfolio = new \App\Models\Portfolio;
-        $portfolio->name = "Metales";
-        $portfolio->description = "Metales y piedras preciosas";
-        $portfolio->price = 9000;
-        $portfolio->save();
-        $contract = new \App\Models\Contract;
-        $contract->name = "Contrato de Metales";
-        $contract->description = "Por medio de la presente blablabla acepto este contrato";
-        $contract->status = FALSE;
-        $contract->portfolios()->save($portfolio);
-        $contract->save();
-        return view('admin.portfolios.create', ['portfolio' => $portfolio]);
+        $data = [];
+        $data['portfolios'] = Portfolio::all();
+        return view('admin.portfolios.create', ['data' => $data]);
     }
 
     /**
@@ -51,11 +42,11 @@ class PortfolioController extends BaseController {
      * @return \Illuminate\Http\Response
      */
 
-    //public function store(Request $req){
-      //  $portfolioInput = $req->input('portfolio');
-      //  $portfolio = Portfolio::create($portfolioInput);
-      //  return redirect()->route('admin.portfolios.index');
-    //}
+    public function store(Request $req){
+        $portfolioInput = $req->input('portfolio');
+        $portfolio = Portfolio::create($portfolioInput);
+        return redirect()->route('admin.portfolios.index');
+    }
 
     /**
      * Display the specified resource.

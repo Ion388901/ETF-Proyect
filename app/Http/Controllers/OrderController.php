@@ -34,9 +34,10 @@ class OrderController extends BaseController
         $portfolioId = [];
         $cart = session()->get('cart');
         $total = 0;
+        
         foreach($cart as $id => $portfolio) {
             $portfolioId[] = $id;
-            $order->portfolios()->attach($id);
+            $order->portfolio_id=$id;
             $total += $portfolio['price'];
         }
         $order->total = $total;
@@ -50,10 +51,10 @@ class OrderController extends BaseController
         $data['order'] = $order;
         $data['transaction'] = 'transaction-done';
         $order = Order::find($order->id);
-        foreach($order->portfolios as $op) {
+        //foreach($order->portfolios as $op) {
             $portfolio = Portfolio::find($op->id);
             $portfolio->save();
-        }    
+        //}    
         $order->status = TRUE;
         $order->save();
         return response()->json($data);

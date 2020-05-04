@@ -17,7 +17,7 @@ class CreateContractsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->boolean('status');
+            $table->boolean('status')->default(false);
             $table->integer('portfolio_id')->unsigned();
             $table->timestamps();
             $table->foreign('portfolio_id')->references('id')->on('portfolios')

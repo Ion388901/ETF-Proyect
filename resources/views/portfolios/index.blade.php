@@ -49,7 +49,9 @@
                                     <a href="{{ route('portfolios.show', $portfolio->id) }}" class="btn btn-info">Mostrar portafolio</a>
                                     <!-- Preguntar al profesor que hacer aquí para que el botón del checkout solo se active cuando contract.status = TRUE -->
                                     <p class="btn-holder">
-                                        <a href="{{ route('portfolios.contractsign', $portfolio->id) }}" class="btn btn-warning btn-block text-center" role="button">Firmar el contrato correspondiente</a> 
+                                    @if ($portfolio->contract)
+                                        <a href="{{ route('portfolios.contractsign', ['id' => $portfolio->contract->id]) }}" class="btn btn-warning btn-block text-center" role="button">Firmar el contrato correspondiente</a>
+                                    @endif
                                     </p>
                                     <p class="btn-holder">
                                         <a href="{{ route('add-to-cart', $portfolio->id) }}" class="btn btn-warning btn-block text-center" role="button">Seleccionar este portafolio</a> 

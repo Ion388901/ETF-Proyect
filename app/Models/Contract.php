@@ -15,8 +15,8 @@ class Contract extends Model {
         'portfolio_id'
     ];
 
-    public function portfolios()
+    public function portfolio()
     {
-        return $this->hasOne('App\Models\Portfolio');
+        return $this->belongsTo('App\Models\Portfolio');
     }
 }

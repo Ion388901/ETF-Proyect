@@ -29,7 +29,8 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 Route::get('/portfolios/cart', 'PortfolioController@cart')->name('cart');
 Route::get('/portfolios/add-to-cart/{id}', 'PortfolioController@addToCart')->name('add-to-cart');
 Route::delete('/portfolios/remove-from-cart', 'PortfolioController@remove')->name('remove-from-cart');
-Route::get('portfolios/contractsign', 'PortfolioController@contractsign')->name('portfolios.contractsign');
+Route::get('portfolios/contractsign/{id}', 'PortfolioController@contractsign')->name('portfolios.contractsign');
+Route::post('portfolios/signcontract/{id}', 'PortfolioController@signcontract')->name('portfolios.signcontract');
 
 // Rutas de las funciones de compra de portafolios
 Route::get('orders/create', 'OrderController@create')->name('order.create');
@@ -51,3 +52,14 @@ Route::get('/contracts/{order?}', 'ContractController@index')->name('contracts.i
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/* Código irrelevante de servicio social
+<ul class="submenu">
+                            <li>
+                                <a href="http://static.test/" class="active">Home One</a>
+                            </li>
+                            <li>
+                                <a href="http://static.test/">Home Two</a>
+                            </li>
+                        </ul>
+ */

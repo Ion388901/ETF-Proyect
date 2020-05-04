@@ -19,37 +19,30 @@
                     <a href="{{ route('portfolios.index') }}" class="btn btn-primary">Regresar</a>
                 </div>
                 <div class="box-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Contenido</th>
-                                    <th>Oprima para aceptar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
+                                <th>Nombre</th>
+                                <th>Contenido</th>
+                                <th>Oprima para aceptar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $data['contract']->name }}</td>
+                                <td>{{ $data['contract']->description }}</td>
                                 <td>
-                                        Contrato de Metales
-                                </td>
-                                <td>
-                                        Por medio de la presente me responsabilizo de todo esto y lo usare bien, acepto este contrato y lo firmo
-                                </td>
-                                <td>
-                                <form method="POST" action="{{ route('portfolios.contractsign') }}">
-                                        <a
-                                             class="btn btn-warning btn-block text-center">
-                                                Acepto el contrato
-                                        </a>
-                                </form>
+                                <form action="{{ route('portfolios.signcontract', ['id' => $data['contract']->id]) }}" method="POST">
+                                    <button type="submit">Acepto el contrato</button>
+                                    @csrf
+                                    </form>
                                 </td>
                             </tr>
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- /.content -->
 @endsection

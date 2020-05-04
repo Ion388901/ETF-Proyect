@@ -59,7 +59,6 @@
         </tr>
         </tfoot>
     </table>
-
 @endsection
 
 
@@ -85,5 +84,4 @@
         });
     });
 </script>
-<!-- revisar porque no funcionan los botones de update y remove cart. posiblemente tiene que ver con ids de productos pero no he podido identificar la causa -->
 @endsection

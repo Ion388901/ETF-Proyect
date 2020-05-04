@@ -36,24 +36,20 @@ class PortfolioController extends BaseController {
         return view('portfolios.show', compact('portfolio'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-    public function see($id){
+    // Request $req, $id
+    // Poner una función de firma de contrato
+    public function contractsign($id){
         $contract=Contract::findOrFail($id);
         $data = [];
         $data['contract'] = $contract;
-        return view('contracts.show', ['data' => $data]);
+        return view('portfolios.contractsign', ['data' => $data]);
     }
 
-    // Request $req, $id
-    // Poner una función de firma de contrato
-    public function contractsign(){
-        return view('portfolios.index')->with('Firma de contrato', 'Se ha firmado el contrato');;
+    public function signcontract(Request $req, $id){
+        $contract=Contract::find($id);
+        $contract->status = FALSE;
+        $contract->save();
+        return redirect()->route('portfolios.index')->with('success', 'Ha firmado el contrato');
     }
 
     // Función que muestra el carrito

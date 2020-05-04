@@ -24,23 +24,21 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    @if (!$data['contract']->portfolios->isEmpty())
+                    @if ($data['contract']->portfolio)
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Portafolio</th>
+                                    <th>Contenido</th>
+                                    <th>Portafolio Vinculado</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($data['contract']->portfolios as $portfolio)
                             <tr>
-                                <td>{{ $portfolio->id }}</td>
-                                <td>{{ $portfolio->name }}</td>
-                                <td>{{ $portfolio->description }}</td>
+                                <td>{{ $data['contract']->id }}</td>
+                                <td>{{ $data['contract']->description }}</td>
+                                <td>{{ $data['contract']->portfolio->name }}</td>
                             </tr>
-                            @endforeach
                             </tbody>
                         </table>
                     @else

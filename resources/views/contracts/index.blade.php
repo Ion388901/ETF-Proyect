@@ -14,42 +14,34 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Índice de contratos</h3>
-                </div>
-                <div class="pull-right">
-                    <a href="{{ route('homepage') }}" class="btn btn-primary">Regresar</a>
-                </div>
+                    <div class="pull-right box-tools">
+                    <div class="pull-right">
+                        <a href="{{ route('homepage') }}" class="btn btn-primary">Regresar</a>
+                    </div>
                 <div class="box-body">
+                    @if (!$data['contracts']->isEmpty())
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Contenido</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($data['contracts'] as $contract)
                             <tr>
+                                <td>{{ $contract->id }}</td>
+                                <td>{{ $contract->name }}</td>
                                 <td>
-                                        1
-                                </td>
-                                <td>
-                                        Contrato de Metales
-                                </td>
-                                <td>
-                                        Por medio de la presente blablabla acepto este contrato
-                                </td>
-                                <td>
-                                    <a
-                                        href="{{ route('contracts.show') }}"
-                                        class="btn btn-success btn-sm">
-                                        <i class="fa fa-eye"></i>
-                                        Ver contrato
-                                    </a>
+                                    <a href="{{ route('contracts.show', $contract->id) }}" class="btn btn-info">Mostrar contrato</a>
                                 </td>
                             </tr>
-                            
+                            @endforeach
                             </tbody>
                         </table>
+                    @else
+                        <p>No existe ningun contrato</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -57,9 +49,3 @@
 </section>
 <!-- /.content -->
 @endsection
-<!-- @if (!$data['contracts']->isEmpty()) -->
-<!-- @foreach ($data['contracts'] as $contract) -->
-<!-- @endforeach -->
-                    <!-- @else -->
-                        <!-- <p>No existen contratos</p> -->
-                    <!--@endif -->
