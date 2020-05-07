@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContractsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,21 @@ class CreateContractsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contracts', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('cart_id')->unsigned();
+            $table->boolean('status');
             $table->string('name');
-            $table->string('description');
-            $table->boolean('status')->default(false);
-            $table->integer('portfolio_id')->unsigned();
+            $table->float('total');
             $table->timestamps();
-            $table->foreign('portfolio_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('portfolios')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('cart_id')
+                ->references('id')
+                ->on('carts')
                 ->onDelete('cascade');
         });
     }
@@ -34,6 +39,6 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contracts');
+        Schema::dropIfExists('orders');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,40 +27,29 @@ Route::post('/signin', 'UserController@login')->name('user.login');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 
 // Rutas de las funciones de cliente para portafolios
-Route::get('/portfolios/cart', 'PortfolioController@cart')->name('cart');
-Route::get('/portfolios/add-to-cart/{id}', 'PortfolioController@addToCart')->name('add-to-cart');
-Route::delete('/portfolios/remove-from-cart', 'PortfolioController@remove')->name('remove-from-cart');
 Route::get('portfolios/contractsign/{id}', 'PortfolioController@contractsign')->name('portfolios.contractsign');
 Route::post('portfolios/signcontract/{id}', 'PortfolioController@signcontract')->name('portfolios.signcontract');
 
+Route::get('cart/create/{portfolio}', 'CartController@create')->name('cart.create');
+Route::get('/cart', 'CartController@index')->name('cart.index');
+
 // Rutas de las funciones de compra de portafolios
-Route::get('orders/create', 'OrderController@create')->name('order.create');
-Route::post('orders/{order}/transaction-done', 'OrderController@transaction')->name('orders.transaction');
-Route::get('orders/{order}/purchase/success', function() {
-    echo 'La compra fue realizada exitosamente';
-})->name('orders.transaction.success');
+Route::get('order/create/{cart}', 'OrderController@create')->name('order.create');
+Route::get('/order', 'OrderController@index')->name('order.review');
+
+//Route::post('orders/{order}/transaction-done', 'OrderController@transaction')->name('order.transaction');
+//Route::get('orders/{order}/purchase/success', function() {
+//    echo 'La compra fue realizada exitosamente';
+//})->name('order.transaction.success');
 
 // Rutas de las funciones de cliente para portafolios
 Route::get('/portfolios', 'PortfolioController@index')->name('portfolios.index');    
 Route::get('/portfolios/show/{id}', 'PortfolioController@show')->name('portfolios.show');
-Route::get('/portfolios/{order?}', 'PortfolioController@index')->name('portfolios.index');
 
 // Rutas de las funciones de cliente para contratos
-// Probablemente añadir rutas para firma de contrato 
 Route::get('/contracts', 'ContractController@index')->name('contracts.index');    
-Route::get('/contracts/show/', 'ContractController@show')->name('contracts.show');    
-Route::get('/contracts/{order?}', 'ContractController@index')->name('contracts.index');
-Auth::routes();
+Route::get('/contracts/show/', 'ContractController@show')->name('contracts.show');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/* Código irrelevante de servicio social
-<ul class="submenu">
-                            <li>
-                                <a href="http://static.test/" class="active">Home One</a>
-                            </li>
-                            <li>
-                                <a href="http://static.test/">Home Two</a>
-                            </li>
-                        </ul>
- */
+Auth::routes();

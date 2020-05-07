@@ -19,9 +19,9 @@ class Portfolio extends Model {
         return $this->hasOne('App\Models\Contract');
     }
 
-    public function orders()
+    public function cart()
     {
-        return $this->belongsTo('App\Models\Order');
+        return $this->hasOne('App\Models\Cart');
     }
 
 }

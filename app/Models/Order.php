@@ -10,7 +10,8 @@ class Order extends Model {
 
     protected $fillable = [
         'user_id',
-        'portfolio_id',
+        'cart_id',
+        'name',
         'total',
         'status'
     ];
@@ -20,9 +21,9 @@ class Order extends Model {
         return $this->hasOne('App\Models\User');
     }
 
-    public function portfolio()
+    public function cart()
     {
-        return $this->hasOne('App\Models\Portfolio');
+        return $this->belongsTo('App\Models\Cart');
     }
     
 }

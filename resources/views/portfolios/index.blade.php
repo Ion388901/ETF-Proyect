@@ -18,12 +18,6 @@
                     <div class="pull-right">
                         <a href="{{ route('homepage') }}" class="btn btn-primary">Regresar</a>
                     </div>    
-                    <!-- Preguntar al profesor que hacer aquí para que el botón del checkout solo se active cuando contract.status = TRUE -->
-                        <a 
-                            class="btn btn-success btn-sm"
-                            href="{{ route('cart') }}">
-                            Checkout
-                        </a>
                     </div>
                 </div>
                 <div class="box-body">
@@ -35,7 +29,6 @@
                                     <th>Nombre</th>
                                     <th>Descripción</th>
                                     <th>Precio</th>
-                                    <th>Contrato</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,9 +46,7 @@
                                         <a href="{{ route('portfolios.contractsign', ['id' => $portfolio->contract->id]) }}" class="btn btn-warning btn-block text-center" role="button">Firmar el contrato correspondiente</a>
                                     @endif
                                     </p>
-                                    <p class="btn-holder">
-                                        <a href="{{ route('add-to-cart', $portfolio->id) }}" class="btn btn-warning btn-block text-center" role="button">Seleccionar este portafolio</a> 
-                                    </p>
+                                    <a href="{{ route('cart.create', $portfolio->id) }}" class="btn btn-info">Añadir al carrito</a>
                                 </td>
                             </tr>
                             <!-- Probablemente añadir una ruta que vaya a firmar el contrato -->

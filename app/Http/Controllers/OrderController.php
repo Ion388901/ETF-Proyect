@@ -12,6 +12,7 @@ use Auth;
 use App\Models\Portfolio;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Cart;
 
 
 class OrderController extends BaseController
@@ -21,31 +22,27 @@ class OrderController extends BaseController
     public function index(Request $req, Order $order) {
         $data  = [];
         $data['order'] = $order;
-        return view('order.review', ['order' => $data]);
+        return view('order.review', ['data' => $data]);
     }
 
-    // Función de creación de la orden
-    public function create(Request $req) {
-        $order = new \App\Models\Order;
+    public function create(Request $req, Cart $cart) {
+        $order = new Order();
+        $order->cart_id = $cart->id;
         $order->user_id = \Auth::user()->id;
-        $order->total = 100;
+        $order->name = $cart->name;
+        $order->total = $cart->price;
         $order->status = FALSE;
         $order->save();
-        $portfolioId = [];
-        $cart = session()->get('cart');
-        $total = 0;
-        
-        foreach($cart as $id => $portfolio) {
-            $portfolioId[] = $id;
-            $order->portfolio_id=$id;
-            $total += $portfolio['price'];
-        }
-        $order->total = $total;
-        $order->save();
-        return view('order.review', ['order' => $order]);    
+
+        return redirect()->route('order.review');
+    }
+
+    public function transaction(Request $req, Order $order){
+
     }
 
     // Función de la transacción y validación de una compra
+    /*
     public function transaction(Request $req, Order $order) {
         $data = [];
         $data['order'] = $order;
@@ -59,4 +56,5 @@ class OrderController extends BaseController
         $order->save();
         return response()->json($data);
     }
+    */
 }
