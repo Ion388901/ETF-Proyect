@@ -29,7 +29,8 @@ class ContractController extends BaseController {
      * @return \Illuminate\Http\Response
      */
 
-    public function show(){
-        return view('contracts.show');
+    public function show($id){
+        $contract=Contract::findOrFail($id);
+        return view('contracts.show', compact('contract'));
     }
 }

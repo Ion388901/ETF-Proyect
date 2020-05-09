@@ -36,11 +36,7 @@ Route::get('/cart', 'CartController@index')->name('cart.index');
 // Rutas de las funciones de compra de portafolios
 Route::get('order/create/{cart}', 'OrderController@create')->name('order.create');
 Route::get('/order', 'OrderController@index')->name('order.review');
-
-//Route::post('orders/{order}/transaction-done', 'OrderController@transaction')->name('order.transaction');
-//Route::get('orders/{order}/purchase/success', function() {
-//    echo 'La compra fue realizada exitosamente';
-//})->name('order.transaction.success');
+Route::post('/transaction', 'OrderController@transaction');
 
 // Rutas de las funciones de cliente para portafolios
 Route::get('/portfolios', 'PortfolioController@index')->name('portfolios.index');    
@@ -48,7 +44,7 @@ Route::get('/portfolios/show/{id}', 'PortfolioController@show')->name('portfolio
 
 // Rutas de las funciones de cliente para contratos
 Route::get('/contracts', 'ContractController@index')->name('contracts.index');    
-Route::get('/contracts/show/', 'ContractController@show')->name('contracts.show');
+Route::get('/contracts/show/{id}', 'ContractController@show')->name('contracts.show');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -13,6 +13,9 @@ use App\Models\Portfolio;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Cart;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
 
 
 class OrderController extends BaseController
@@ -20,7 +23,7 @@ class OrderController extends BaseController
 
     // Función de indice de la orden
     public function index(Request $req, Order $order) {
-        $data  = [];
+        $order = Order::all();
         $data['order'] = $order;
         return view('order.review', ['data' => $data]);
     }
@@ -37,24 +40,18 @@ class OrderController extends BaseController
         return redirect()->route('order.review');
     }
 
-    public function transaction(Request $req, Order $order){
+    public function transaction(Request $request) {
+        Stripe::setApiKey('sk_test_S7elIE8xFX2bG9K70FqvhQhk00JEaRSDk2');
+        $customer = Customer::create(array(
+            'email' => $request->stripeEmail,
+            'source'  => $request->stripeToken
+        ));        $charge = Charge::create(array(
+            'customer' => $customer->id,
+            'amount'   => 90000,
+            'currency' => 'usd'
+        ));
 
+        return redirect()->route('portfolios.index')->with('Pago aceptado');
     }
 
-    // Función de la transacción y validación de una compra
-    /*
-    public function transaction(Request $req, Order $order) {
-        $data = [];
-        $data['order'] = $order;
-        $data['transaction'] = 'transaction-done';
-        $order = Order::find($order->id);
-        //foreach($order->portfolios as $op) {
-            $portfolio = Portfolio::find($op->id);
-            $portfolio->save();
-        //}    
-        $order->status = TRUE;
-        $order->save();
-        return response()->json($data);
-    }
-    */
 }
